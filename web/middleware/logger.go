@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/zenazn/goji/web"
-	"github.com/zenazn/goji/web/mutil"
+	"github.com/yangou/goji/web"
+	"github.com/yangou/goji/web/mutil"
 )
 
 // Logger is a middleware that logs the start and end of each request, along

@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/zenazn/goji/bind"
-	"github.com/zenazn/goji/graceful"
+	"github.com/yangou/goji/bind"
+	"github.com/yangou/goji/graceful"
 )
 
 func init() {

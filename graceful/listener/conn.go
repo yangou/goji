@@ -61,18 +61,32 @@ func (c *conn) Read(b []byte) (n int, err error) {
 	return c.Conn.Read(b)
 }
 
+// func (c *conn) Close() error {
+// 	c.mu.Lock()
+// 	defer c.mu.Unlock()
+
+// 	if c.closed || c.disowned {
+// 		return errClosing
+// 	}
+
+// 	c.closed = true
+// 	c.shard.disown(c)
+// 	defer c.shard.wg.Done()
+
+// 	return c.Conn.Close()
+// }
+
+// This Close() method doesn't check for disowned flag.
+// Use the graceful.PreHook to manage the hijacked connection first!
 func (c *conn) Close() error {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
-	if c.closed || c.disowned {
+	if c.closed {
 		return errClosing
 	}
 
 	c.closed = true
-	c.shard.disown(c)
-	defer c.shard.wg.Done()
-
 	return c.Conn.Close()
 }
 
